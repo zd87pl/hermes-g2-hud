@@ -1,0 +1,11 @@
+{
+  "name": "Hermes G2 HUD",
+  "version": "1.0.0",
+  "description": "Monitor and control Hermes AI agents from your Even Realities G2 smart glasses. Real-time agent status, cron monitoring, voice commands, tap navigation.",
+  "author": "zd87pl",
+  "icon": "",
+  "network": [
+    "wss://hermes.local",
+    "ws://127.0.0.1"
+  ]
+}

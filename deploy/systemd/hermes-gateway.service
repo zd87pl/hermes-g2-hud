@@ -1,0 +1,18 @@
+[Unit]
+Description=Hermes WS Gateway — bridges G2 smart glasses to Hermes AI
+After=network.target
+
+[Service]
+Type=simple
+User=ziggy
+WorkingDirectory=/opt/hermes-g2-hud
+Environment=HERMES_GATEWAY_HOST=0.0.0.0
+Environment=HERMES_GATEWAY_PORT=9090
+Environment=HERMES_CALLBACK_URL=http://localhost:8080
+Environment=LOG_LEVEL=info
+ExecStart=/opt/hermes-g2-hud/.venv/bin/python -m gateway --host 0.0.0.0 --port 9090
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+services:
+  gateway:
+    build:
+      context: ..
+      dockerfile: gateway/Dockerfile
+    ports:
+      - "9090:9090"
+    environment:
+      - HERMES_GATEWAY_HOST=0.0.0.0
+      - HERMES_GATEWAY_PORT=9090
+      - HERMES_CALLBACK_URL=${HERMES_CALLBACK_URL:-}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9090/api/status')"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

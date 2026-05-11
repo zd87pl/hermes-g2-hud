@@ -56,8 +56,9 @@ async function boot() {
     await initAudio();
 
     // 2. Connect to Hermes
-    log('Connecting to Hermes...');
-    const ws = new HermesWebSocket({ url: 'ws://127.0.0.1:9090' });
+    const wsUrl = import.meta.env.VITE_WS_URL || 'ws://127.0.0.1:9090';
+    log(`Connecting to ${wsUrl}...`);
+    const ws = new HermesWebSocket({ url: wsUrl });
     initDispatcher(ws);
 
     ws.on((event) => {
